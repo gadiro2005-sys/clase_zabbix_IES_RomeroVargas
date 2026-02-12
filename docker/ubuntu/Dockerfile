@@ -96,7 +96,5 @@ RUN sudo sed -i 's/^Server=127.0.0.1/Server=zabbix-server/' /etc/zabbix/zabbix_a
 # Exponer el puerto del agente
 EXPOSE 10050
 
-# Punto de entrada del contenedor
-# Ejecuta el script que registra y lanza el GitHub Runner
-# (Está comentado para poder entrar manualmente al contenedor si se desea)
+#Arrancamos los servicios NGINX y zabbix agent
 ENTRYPOINT ["./script.sh"]
