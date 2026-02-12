@@ -36,15 +36,10 @@ docker compose up -d
 o de otra forma
 docker-compose up -d
 ```
-```
-docker ps -a
-docker exec -it ubuntu22_server /bin/bash
-./githubaction.sh
-```
 
 Abrir el navegador con la siguiente dirección url:
-- [ ] [Localhost](http://localhost:8006) 
-Veremos la página index del servidor web NGINX
+- [ ] [Localhost](http://localhost:8080) 
+Veremos la página index Zabbix
 
 
 ## License
