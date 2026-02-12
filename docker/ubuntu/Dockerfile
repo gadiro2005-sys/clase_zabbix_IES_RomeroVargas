@@ -66,6 +66,9 @@ WORKDIR /home/runner
 # Copiamos el script de arranque del runner al contenedor
 COPY ubuntu/githubaction.sh /home/runner
 
+# Copiamos la configuración de NGINX con soporte para zabbix
+COPY ubuntu/nginx/nginx_zabbix.conf /etc/nginx/sites-enabled/default
+
 # Cambiamos propietario y permisos del script
 # runner será el usuario que lo ejecute
 RUN chown runner:runner /home/runner/githubaction.sh && \

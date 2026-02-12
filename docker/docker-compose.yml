@@ -24,6 +24,8 @@ services:
     ports:
       - "10051:10051"
     environment:
+      ZBX_STARTREPORTWRITERS: 3
+      ZBX_WEBSERVICEURL: http://zabbix-web-service:10053/report
       DB_SERVER_HOST: zabbix-db
       MYSQL_DATABASE: zabbix_db
       MYSQL_USER: zabbix
@@ -42,6 +44,8 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    cap_add:
+      - SYS_ADMIN # Necesario para que Chrome funcione en contenedores
     environment:
       ZBX_SERVER_HOST: zabbix-server
       DB_SERVER_HOST: zabbix-db
@@ -54,6 +58,19 @@ services:
       - zabbix-db
       - zabbix-server
     # Conexión del contenedor a una red personalizada
+    networks:
+      - networkubuntu
+
+  zabbix-web-service:
+    image: zabbix/zabbix-web-service:latest
+    container_name: zabbix-web-service
+    restart: always
+    ports:
+      - "10053:10053"
+    environment:
+      - ZBX_ALLOWED_HOSTS=zabbix-server # Permite que el server le pida informes
+    cap_add:
+      - SYS_ADMIN # Crítico para el Chrome interno
     networks:
       - networkubuntu
 
