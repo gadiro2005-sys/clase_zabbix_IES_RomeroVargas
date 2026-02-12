@@ -64,7 +64,7 @@ RUN ./bin/installdependencies.sh
 WORKDIR /home/runner
 
 # Copiamos el script de arranque del runner al contenedor
-COPY ubuntu/githubaction.sh /home/runner
+COPY ubuntu/script.sh /home/runner
 
 # Copiamos la configuración de NGINX con soporte para zabbix
 COPY ubuntu/nginx/nginx_zabbix.conf /etc/nginx/sites-enabled/default
