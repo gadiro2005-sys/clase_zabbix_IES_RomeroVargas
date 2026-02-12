@@ -71,8 +71,8 @@ COPY ubuntu/nginx/nginx_zabbix.conf /etc/nginx/sites-enabled/default
 
 # Cambiamos propietario y permisos del script
 # runner será el usuario que lo ejecute
-RUN chown runner:runner /home/runner/githubaction.sh && \
-    chmod 755 /home/runner/githubaction.sh
+RUN chown runner:runner /home/runner/script.sh && \
+    chmod 755 /home/runner/script.sh
 
 # Redirección de logs de Nginx a la salida estándar del contenedor
 # Esto permite ver los logs usando `docker logs`
@@ -91,7 +91,7 @@ USER runner
 # 'zabbix-server' es el nombre del servicio en tu docker-compose
 RUN sudo sed -i 's/^Server=127.0.0.1/Server=zabbix-server/' /etc/zabbix/zabbix_agentd.conf && \
     sudo sed -i 's/^ServerActive=127.0.0.1/ServerActive=zabbix-server/' /etc/zabbix/zabbix_agentd.conf && \
-    sudo sed -i 's/^Hostname=Zabbix server/Hostname=ubuntu22_server/' /etc/zabbix/zabbix_agentd.conf
+    sudo sed -i 's/^Hostname=Zabbix server/Hostname=ubuntu22_server_zabbix/' /etc/zabbix/zabbix_agentd.conf
 
 # Exponer el puerto del agente
 EXPOSE 10050
@@ -99,4 +99,4 @@ EXPOSE 10050
 # Punto de entrada del contenedor
 # Ejecuta el script que registra y lanza el GitHub Runner
 # (Está comentado para poder entrar manualmente al contenedor si se desea)
-#ENTRYPOINT ["./githubaction.sh"]
+ENTRYPOINT ["./script.sh"]

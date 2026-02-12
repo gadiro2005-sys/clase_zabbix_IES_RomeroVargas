@@ -84,7 +84,7 @@ services:
       # Dockerfile que se usará para construir la imagen
       dockerfile: ubuntu/Dockerfile
     # Nombre fijo del contenedor (en lugar de uno generado automáticamente)
-    container_name: ubuntu22_server
+    container_name: ubuntu22_server_zabbix
     # Mantiene el contenedor activo y permite interacción por terminal
     tty: true
     stdin_open: true
